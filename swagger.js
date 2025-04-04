@@ -5,8 +5,8 @@ const doc = {
     title: "Final Project",
     description: "Movies API",
   },
-  host: "localhost:3000",
-  schemes: ['http', 'https'],
+  host: "cse431-final-project.onrender.com",
+  schemes: ['https'],
   definitions: {
     Movie: {
       title: "Inception",
