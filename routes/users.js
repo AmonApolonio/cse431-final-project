@@ -87,9 +87,16 @@ router.delete('/:id',
   */
   usersController.deleteUser);
 
-router.post('/favorites/:movieId', 
+router.post('/:userId/favorites/:movieId', 
+  validateId(), 
   isAuthenticated,
   /* #swagger.summary = "Add a movie to favorites"
+     #swagger.parameters['userId'] = {
+         in: 'path',
+         description: "User ID",
+         required: true,
+         type: "string"
+     }
      #swagger.parameters['movieId'] = {
          in: 'path',
          description: "Movie ID to add to favorites",
@@ -102,9 +109,16 @@ router.post('/favorites/:movieId',
   */
   usersController.addFavoriteMovie);
 
-router.delete('/favorites/:movieId', 
+router.delete('/:userId/favorites/:movieId', 
+  validateId(), 
   isAuthenticated,
   /* #swagger.summary = "Remove a movie from favorites"
+     #swagger.parameters['userId'] = {
+         in: 'path',
+         description: "User ID",
+         required: true,
+         type: "string"
+     }
      #swagger.parameters['movieId'] = {
          in: 'path',
          description: "Movie ID to remove from favorites",

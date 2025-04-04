@@ -35,7 +35,7 @@ const createUser = async (req, res) => {
         const user = {
             username: req.body.username,
             email: req.body.email,
-            favorites: req.body.favorites || [], // Array of movie IDs
+            favorites: req.body.favorites || [],
             birthday: req.body.birthday || null,
             isActive: req.body.isActive !== undefined ? req.body.isActive : true,
             createdAt: new Date(),
@@ -67,10 +67,10 @@ const updateUser = async (req, res) => {
         const user = {
             username: req.body.username || existingUser.username,
             email: req.body.email || existingUser.email,
-            favorites: req.body.favorites || existingUser.favorites, // Array of movie IDs
+            favorites: req.body.favorites || existingUser.favorites,
             birthday: req.body.birthday || existingUser.birthday,
             isActive: req.body.isActive !== undefined ? req.body.isActive : existingUser.isActive,
-            createdAt: existingUser.createdAt, // Preserve original creation date
+            createdAt: existingUser.createdAt,
             updatedAt: new Date()
         };
 
@@ -106,7 +106,7 @@ const deleteUser = async (req, res) => {
 const addFavoriteMovie = async (req, res) => {
     //#swagger.tags = ['Users']
     try {
-        const userId = ObjectId.createFromHexString(req.user.id);
+        const userId = ObjectId.createFromHexString(req.params.userId);
         const movieId = req.params.movieId;
 
         const response = await mongodb.getDatabase().db().collection('users').updateOne(
@@ -127,7 +127,7 @@ const addFavoriteMovie = async (req, res) => {
 const removeFavoriteMovie = async (req, res) => {
     //#swagger.tags = ['Users']
     try {
-        const userId = ObjectId.createFromHexString(req.user.id);
+        const userId = ObjectId.createFromHexString(req.params.userId);
         const movieId = req.params.movieId;
 
         const response = await mongodb.getDatabase().db().collection('users').updateOne(
