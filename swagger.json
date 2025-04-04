@@ -1074,8 +1074,8 @@
         "favorites": {
           "type": "array",
           "example": [
-            "movieId1",
-            "movieId2"
+            "1",
+            "2"
           ],
           "items": {
             "type": "string"
@@ -1117,8 +1117,8 @@
         "movies": {
           "type": "array",
           "example": [
-            "movieId1",
-            "movieId2"
+            "1",
+            "2"
           ],
           "items": {
             "type": "string"

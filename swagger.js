@@ -21,7 +21,7 @@ const doc = {
     User: {
       username: "johndoe",
       email: "johndoe@example.com",
-      favorites: ["movieId1", "movieId2"],
+      favorites: ["1", "2"],
       birthday: "1990-01-01",
       isActive: true,
       createdAt: "2023-01-01T00:00:00.000Z",
@@ -31,7 +31,7 @@ const doc = {
       name: "Leonardo DiCaprio",
       birthdate: "1974-11-11",
       nationality: "American",
-      movies: ["movieId1", "movieId2"],
+      movies: ["1", "2"],
       createdAt: "2023-01-01T00:00:00.000Z",
       updatedAt: "2023-01-01T00:00:00.000Z"
     },
