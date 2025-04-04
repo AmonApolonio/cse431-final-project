@@ -1,14 +1,13 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Project 2 API",
-    "description": "Project 2 API",
+    "title": "Final Project",
+    "description": "Movies API",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "cse431-final-project.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http",
     "https"
   ],
   "paths": {
@@ -214,7 +213,7 @@
         }
       }
     },
-    "/users/favorites/{movieId}": {
+    "/users/{userId}/favorites/{movieId}": {
       "post": {
         "tags": [
           "Users"
@@ -222,6 +221,13 @@
         "summary": "Add a movie to favorites",
         "description": "",
         "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "User ID"
+          },
           {
             "name": "movieId",
             "in": "path",
@@ -252,6 +258,13 @@
         "summary": "Remove a movie from favorites",
         "description": "",
         "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "User ID"
+          },
           {
             "name": "movieId",
             "in": "path",
