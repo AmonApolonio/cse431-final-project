@@ -553,6 +553,9 @@
     },
     "/actors/": {
       "post": {
+        "tags": [
+          "Actors"
+        ],
         "summary": "Add a new actor",
         "description": "",
         "parameters": [
@@ -579,6 +582,9 @@
         }
       },
       "get": {
+        "tags": [
+          "Actors"
+        ],
         "summary": "Get all actors",
         "description": "",
         "responses": {
@@ -608,6 +614,9 @@
     },
     "/actors/{id}": {
       "get": {
+        "tags": [
+          "Actors"
+        ],
         "summary": "Get a single actor",
         "description": "",
         "parameters": [
@@ -635,6 +644,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Actors"
+        ],
         "summary": "Update an actor",
         "description": "",
         "parameters": [
@@ -671,6 +683,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Actors"
+        ],
         "summary": "Delete an actor",
         "description": "",
         "parameters": [
@@ -697,6 +712,9 @@
     },
     "/genres/": {
       "post": {
+        "tags": [
+          "Genres"
+        ],
         "summary": "Add a new genre",
         "description": "",
         "parameters": [
@@ -723,6 +741,9 @@
         }
       },
       "get": {
+        "tags": [
+          "Genres"
+        ],
         "summary": "Get all genres",
         "description": "",
         "responses": {
@@ -752,6 +773,9 @@
     },
     "/genres/{id}": {
       "get": {
+        "tags": [
+          "Genres"
+        ],
         "summary": "Get a single genre",
         "description": "",
         "parameters": [
@@ -779,6 +803,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Genres"
+        ],
         "summary": "Update a genre",
         "description": "",
         "parameters": [
@@ -815,6 +842,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Genres"
+        ],
         "summary": "Delete a genre",
         "description": "",
         "parameters": [
@@ -841,6 +871,9 @@
     },
     "/reviews/": {
       "post": {
+        "tags": [
+          "Reviews"
+        ],
         "summary": "Add a new review",
         "description": "",
         "parameters": [
@@ -869,6 +902,9 @@
     },
     "/reviews/movie/{movieId}": {
       "get": {
+        "tags": [
+          "Reviews"
+        ],
         "summary": "Get reviews for a movie",
         "description": "",
         "parameters": [
@@ -907,6 +943,9 @@
     },
     "/reviews/{id}": {
       "put": {
+        "tags": [
+          "Reviews"
+        ],
         "summary": "Update a review",
         "description": "",
         "parameters": [
@@ -943,6 +982,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Reviews"
+        ],
         "summary": "Delete a review",
         "description": "",
         "parameters": [

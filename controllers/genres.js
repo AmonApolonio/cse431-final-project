@@ -2,6 +2,7 @@ const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 
 const addGenre = async (req, res) => {
+    //#swagger.tags = ['Genres']
     try {
         const genre = {
             name: req.body.name,
@@ -21,6 +22,7 @@ const addGenre = async (req, res) => {
 };
 
 const getAllGenres = async (req, res) => {
+    //#swagger.tags = ['Genres']
     try {
         const genres = await mongodb.getDatabase().db().collection('genres').find().toArray();
         res.status(200).json(genres);
@@ -30,6 +32,7 @@ const getAllGenres = async (req, res) => {
 };
 
 const getGenreById = async (req, res) => {
+    //#swagger.tags = ['Genres']
     try {
         const genreId = ObjectId.createFromHexString(req.params.id);
         const genre = await mongodb.getDatabase().db().collection('genres').findOne({ _id: genreId });
@@ -45,6 +48,7 @@ const getGenreById = async (req, res) => {
 };
 
 const updateGenre = async (req, res) => {
+    //#swagger.tags = ['Genres']
     try {
         const genreId = ObjectId.createFromHexString(req.params.id);
         const updatedGenre = {
@@ -65,6 +69,7 @@ const updateGenre = async (req, res) => {
 };
 
 const deleteGenre = async (req, res) => {
+    //#swagger.tags = ['Genres']
     try {
         const genreId = ObjectId.createFromHexString(req.params.id);
         const response = await mongodb.getDatabase().db().collection('genres').deleteOne({ _id: genreId });

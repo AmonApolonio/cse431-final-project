@@ -2,6 +2,7 @@ const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 
 const addActor = async (req, res) => {
+    //#swagger.tags = ['Actors']
     try {
         const actor = {
             name: req.body.name,
@@ -23,6 +24,7 @@ const addActor = async (req, res) => {
 };
 
 const getAllActors = async (req, res) => {
+    //#swagger.tags = ['Actors']
     try {
         const actors = await mongodb.getDatabase().db().collection('actors').find().toArray();
         res.status(200).json(actors);
@@ -32,6 +34,7 @@ const getAllActors = async (req, res) => {
 };
 
 const getActorById = async (req, res) => {
+    //#swagger.tags = ['Actors']
     try {
         const actorId = ObjectId.createFromHexString(req.params.id);
         const actor = await mongodb.getDatabase().db().collection('actors').findOne({ _id: actorId });
@@ -47,6 +50,7 @@ const getActorById = async (req, res) => {
 };
 
 const updateActor = async (req, res) => {
+    //#swagger.tags = ['Actors']
     try {
         const actorId = ObjectId.createFromHexString(req.params.id);
         const updatedActor = {
@@ -69,6 +73,7 @@ const updateActor = async (req, res) => {
 };
 
 const deleteActor = async (req, res) => {
+    //#swagger.tags = ['Actors']
     try {
         const actorId = ObjectId.createFromHexString(req.params.id);
         const response = await mongodb.getDatabase().db().collection('actors').deleteOne({ _id: actorId });

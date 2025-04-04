@@ -2,6 +2,7 @@ const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 
 const addReview = async (req, res) => {
+    //#swagger.tags = ['Reviews']
     try {
         const review = {
             movieId: ObjectId.createFromHexString(req.body.movieId),
@@ -24,6 +25,7 @@ const addReview = async (req, res) => {
 };
 
 const getReviewsByMovie = async (req, res) => {
+    //#swagger.tags = ['Reviews']
     try {
         const movieId = ObjectId.createFromHexString(req.params.movieId);
         const reviews = await mongodb.getDatabase().db().collection('reviews').find({ movieId }).toArray();
@@ -34,6 +36,7 @@ const getReviewsByMovie = async (req, res) => {
 };
 
 const updateReview = async (req, res) => {
+    //#swagger.tags = ['Reviews']
     try {
         const reviewId = ObjectId.createFromHexString(req.params.id);
         const updatedReview = {
@@ -55,6 +58,7 @@ const updateReview = async (req, res) => {
 };
 
 const deleteReview = async (req, res) => {
+    //#swagger.tags = ['Reviews']
     try {
         const reviewId = ObjectId.createFromHexString(req.params.id);
         const response = await mongodb.getDatabase().db().collection('reviews').deleteOne({ _id: reviewId });
