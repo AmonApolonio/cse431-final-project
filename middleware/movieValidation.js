@@ -44,14 +44,14 @@ const movieValidationRules = () => {
   ];
 };
 
-const validateId = () => {
-  return [
-    validateObjectId(),
-    checkValidationResult
-  ];
-};
+// const validateId = () => {
+//   return [
+//     validateObjectId(),
+//     checkValidationResult
+//   ];
+// };
 
 module.exports = {
   movieValidationRules,
-  validateId
+  // validateId
 };
