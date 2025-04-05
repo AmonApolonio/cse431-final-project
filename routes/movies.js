@@ -15,7 +15,7 @@ router.get('/',
   moviesController.getAll);
 
 router.get('/:id', 
-  // validateId(), 
+  validateId(), 
   /* #swagger.summary = "Get a single movie"
      #swagger.parameters['id'] = {
          in: 'path',
@@ -48,7 +48,7 @@ router.post('/',
   moviesController.createMovie);
 
 router.put('/:id', 
-  // validateId(), 
+  validateId(), 
   movieValidationRules(), 
   // isAuthenticated,
   /* #swagger.summary = "Update a movie"
@@ -72,7 +72,7 @@ router.put('/:id',
   moviesController.updateMovie);
 
 router.delete('/:id', 
-  // validateId(),
+  validateId(),
   // isAuthenticated,
   /* #swagger.summary = "Delete a movie"
      #swagger.parameters['id'] = {

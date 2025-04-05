@@ -1,8 +1,8 @@
 const { body, param, validationResult } = require('express-validator');
 
-// const validateObjectId = () => {
-//   return param('id').isMongoId().withMessage('Must provide a valid MongoDB ObjectId');
-// };
+const validateObjectId = () => {
+  return param('id').isMongoId().withMessage('Must provide a valid MongoDB ObjectId');
+};
 
 const checkValidationResult = (req, res, next) => {
   const errors = validationResult(req);
@@ -44,14 +44,14 @@ const movieValidationRules = () => {
   ];
 };
 
-// const validateId = () => {
-//   return [
-//     validateObjectId(),
-//     checkValidationResult
-//   ];
-// };
+const validateId = () => {
+  return [
+    validateObjectId(),
+    checkValidationResult
+  ];
+};
 
 module.exports = {
   movieValidationRules,
-  // validateId
+  validateId
 };
