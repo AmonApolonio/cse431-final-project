@@ -14,6 +14,36 @@ router.get('/',
   */
   moviesController.getAll);
 
+router.get('/search', 
+  /* #swagger.summary = "Search movies by title"
+     #swagger.parameters['title'] = {
+         in: 'query',
+         description: "Title to search for",
+         required: true,
+         type: "string"
+     }
+     #swagger.responses[200] = {
+         description: "List of movies matching the title",
+         schema: { type: "array", items: { $ref: "#/definitions/Movie" } }
+     }
+  */
+  moviesController.searchMovies);
+
+router.get('/filter', 
+  /* #swagger.summary = "Filter movies by genre"
+     #swagger.parameters['genre'] = {
+         in: 'query',
+         description: "Genre to filter by",
+         required: true,
+         type: "string"
+     }
+     #swagger.responses[200] = {
+         description: "List of movies matching the genre",
+         schema: { type: "array", items: { $ref: "#/definitions/Movie" } }
+     }
+  */
+  moviesController.filterMoviesByGenre);
+
 router.get('/:id', 
   validateId(), 
   /* #swagger.summary = "Get a single movie"
@@ -86,35 +116,5 @@ router.delete('/:id',
      }
   */
   moviesController.deleteMovie);
-
-router.get('/search', 
-  /* #swagger.summary = "Search movies by title"
-     #swagger.parameters['title'] = {
-         in: 'query',
-         description: "Title to search for",
-         required: true,
-         type: "string"
-     }
-     #swagger.responses[200] = {
-         description: "List of movies matching the title",
-         schema: { type: "array", items: { $ref: "#/definitions/Movie" } }
-     }
-  */
-  moviesController.searchMovies);
-
-router.get('/filter', 
-  /* #swagger.summary = "Filter movies by genre"
-     #swagger.parameters['genre'] = {
-         in: 'query',
-         description: "Genre to filter by",
-         required: true,
-         type: "string"
-     }
-     #swagger.responses[200] = {
-         description: "List of movies matching the genre",
-         schema: { type: "array", items: { $ref: "#/definitions/Movie" } }
-     }
-  */
-  moviesController.filterMoviesByGenre);
 
 module.exports = router;
