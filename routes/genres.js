@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const genresController = require('../controllers/genres');
-const isAuthenticated = require('../middleware/isAuthenticated');
+const { isAuthenticated } = require('../middleware/authenticate');
 const { genreValidationRules, validateGenreId } = require('../middleware/genresValidation');
 
 router.post('/', 

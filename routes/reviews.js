@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const reviewsController = require('../controllers/reviews');
 const { reviewValidationRules, validateReviewId } = require('../middleware/reviewsValidation');
+const { isAuthenticated } = require('../middleware/authenticate');
 
 router.post('/', 
   isAuthenticated,

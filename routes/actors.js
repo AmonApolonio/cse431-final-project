@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const actorsController = require('../controllers/actors');
-const isAuthenticated = require('../middleware/isAuthenticated');
 const { actorValidationRules, validateActorId } = require('../middleware/actorsValidation');
+const { isAuthenticated } = require('../middleware/authenticate');
 
 router.post('/', 
   isAuthenticated,

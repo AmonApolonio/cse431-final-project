@@ -3,7 +3,7 @@ const router = express.Router();
 
 const moviesController = require('../controllers/movies');
 const { movieValidationRules, validateId } = require('../middleware/movieValidation');
-const { isAuthenticated } = require('../middleware/authenticate.js');
+const { isAuthenticated } = require('../middleware/authenticate');
 
 router.get('/', 
   /* #swagger.summary = "Get all movies"
