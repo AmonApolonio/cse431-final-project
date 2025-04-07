@@ -356,6 +356,94 @@
         }
       }
     },
+    "/movies/search": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Search movies by title",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "query",
+            "description": "Title to search for",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of movies matching the title",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "array"
+                },
+                "items": {
+                  "$ref": "#/definitions/Movie"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/movies/filter": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Filter movies by genre",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "genre",
+            "in": "query",
+            "description": "Genre to filter by",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of movies matching the genre",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "array"
+                },
+                "items": {
+                  "$ref": "#/definitions/Movie"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/movies/{id}": {
       "get": {
         "tags": [
@@ -463,124 +551,7 @@
         }
       }
     },
-    "/movies/search": {
-      "get": {
-        "tags": [
-          "Movies"
-        ],
-        "summary": "Search movies by title",
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "title",
-            "in": "query",
-            "description": "Title to search for",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of movies matching the title",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "array"
-                },
-                "items": {
-                  "$ref": "#/definitions/Movie"
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/movies/filter": {
-      "get": {
-        "tags": [
-          "Movies"
-        ],
-        "summary": "Filter movies by genre",
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "genre",
-            "in": "query",
-            "description": "Genre to filter by",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of movies matching the genre",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "array"
-                },
-                "items": {
-                  "$ref": "#/definitions/Movie"
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
     "/actors/": {
-      "post": {
-        "tags": [
-          "Actors"
-        ],
-        "summary": "Add a new actor",
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Actor information",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Actor"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Actor added successfully",
-            "schema": {
-              "$ref": "#/definitions/Actor"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
       "get": {
         "tags": [
           "Actors"
@@ -605,6 +576,38 @@
                 "name": "main"
               }
             }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Actors"
+        ],
+        "summary": "Add a new actor",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Actor information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Actor"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Actor added successfully",
+            "schema": {
+              "$ref": "#/definitions/Actor"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -674,6 +677,9 @@
               "$ref": "#/definitions/Actor"
             }
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -701,6 +707,9 @@
           "200": {
             "description": "Actor deleted successfully"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -711,35 +720,6 @@
       }
     },
     "/genres/": {
-      "post": {
-        "tags": [
-          "Genres"
-        ],
-        "summary": "Add a new genre",
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Genre information",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Genre"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Genre added successfully",
-            "schema": {
-              "$ref": "#/definitions/Genre"
-            }
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
       "get": {
         "tags": [
           "Genres"
@@ -764,6 +744,38 @@
                 "name": "main"
               }
             }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Genres"
+        ],
+        "summary": "Add a new genre",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Genre information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Genre"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Genre added successfully",
+            "schema": {
+              "$ref": "#/definitions/Genre"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -833,6 +845,9 @@
               "$ref": "#/definitions/Genre"
             }
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -860,39 +875,11 @@
           "200": {
             "description": "Genre deleted successfully"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/reviews/": {
-      "post": {
-        "tags": [
-          "Reviews"
-        ],
-        "summary": "Add a new review",
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Review information",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Review"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Review added successfully",
-            "schema": {
-              "$ref": "#/definitions/Review"
-            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -941,6 +928,40 @@
         }
       }
     },
+    "/reviews/": {
+      "post": {
+        "tags": [
+          "Reviews"
+        ],
+        "summary": "Add a new review",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Review information",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Review"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Review added successfully",
+            "schema": {
+              "$ref": "#/definitions/Review"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/reviews/{id}": {
       "put": {
         "tags": [
@@ -973,6 +994,9 @@
               "$ref": "#/definitions/Review"
             }
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -999,6 +1023,9 @@
         "responses": {
           "200": {
             "description": "Review deleted successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
