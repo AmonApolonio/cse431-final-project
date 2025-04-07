@@ -32,7 +32,7 @@ router.get('/:id',
 
 router.post('/', 
   movieValidationRules(), 
-  // isAuthenticated,
+  isAuthenticated,
   /* #swagger.summary = "Create a new movie"
      #swagger.parameters['body'] = {
          in: 'body',
@@ -50,7 +50,7 @@ router.post('/',
 router.put('/:id', 
   validateId(), 
   movieValidationRules(), 
-  // isAuthenticated,
+  isAuthenticated,
   /* #swagger.summary = "Update a movie"
      #swagger.parameters['id'] = {
          in: 'path',
@@ -73,7 +73,7 @@ router.put('/:id',
 
 router.delete('/:id', 
   validateId(),
-  // isAuthenticated,
+  isAuthenticated,
   /* #swagger.summary = "Delete a movie"
      #swagger.parameters['id'] = {
          in: 'path',

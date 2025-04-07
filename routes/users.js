@@ -32,7 +32,7 @@ router.get('/:id',
 
 router.post('/', 
   userValidationRules(), 
-//   isAuthenticated,
+  isAuthenticated,
   /* #swagger.summary = "Create a new user"
      #swagger.parameters['body'] = {
          in: 'body',
@@ -50,7 +50,7 @@ router.post('/',
 router.put('/:id', 
   validateId(), 
   userValidationRules(), 
-  //  isAuthenticated,
+  isAuthenticated,
   /* #swagger.summary = "Update a user"
      #swagger.parameters['id'] = {
          in: 'path',
@@ -73,7 +73,7 @@ router.put('/:id',
 
 router.delete('/:id', 
   validateId(), 
-//   isAuthenticated,
+  isAuthenticated,
   /* #swagger.summary = "Delete a user"
      #swagger.parameters['id'] = {
          in: 'path',
@@ -89,7 +89,7 @@ router.delete('/:id',
 
 router.post('/:userId/favorites/:movieId', 
   validateId(), 
-//   isAuthenticated,
+  isAuthenticated,
   /* #swagger.summary = "Add a movie to favorites"
      #swagger.parameters['userId'] = {
          in: 'path',
@@ -111,7 +111,7 @@ router.post('/:userId/favorites/:movieId',
 
 router.delete('/:userId/favorites/:movieId', 
   validateId(), 
-//   isAuthenticated,
+  isAuthenticated,
   /* #swagger.summary = "Remove a movie from favorites"
      #swagger.parameters['userId'] = {
          in: 'path',

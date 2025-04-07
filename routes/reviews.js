@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const reviewsController = require('../controllers/reviews');
+const { reviewValidationRules, validateReviewId } = require('../middleware/reviewsValidation');
 
 router.post('/', 
+  isAuthenticated,
+  reviewValidationRules(),
   /* #swagger.summary = "Add a new review"
      #swagger.parameters['body'] = {
          in: 'body',
@@ -33,6 +36,9 @@ router.get('/movie/:movieId',
   reviewsController.getReviewsByMovie);
 
 router.put('/:id', 
+  isAuthenticated,
+  validateReviewId(),
+  reviewValidationRules(),
   /* #swagger.summary = "Update a review"
      #swagger.parameters['id'] = {
          in: 'path',
@@ -54,6 +60,8 @@ router.put('/:id',
   reviewsController.updateReview);
 
 router.delete('/:id', 
+  isAuthenticated,
+  validateReviewId(),
   /* #swagger.summary = "Delete a review"
      #swagger.parameters['id'] = {
          in: 'path',

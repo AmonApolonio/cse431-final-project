@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const genresController = require('../controllers/genres');
+const isAuthenticated = require('../middleware/isAuthenticated');
+const { genreValidationRules, validateGenreId } = require('../middleware/genresValidation');
 
 router.post('/', 
+  isAuthenticated,
+  genreValidationRules(),
   /* #swagger.summary = "Add a new genre"
      #swagger.parameters['body'] = {
          in: 'body',
@@ -42,6 +46,9 @@ router.get('/:id',
   genresController.getGenreById);
 
 router.put('/:id', 
+  isAuthenticated,
+  validateGenreId(),
+  genreValidationRules(),
   /* #swagger.summary = "Update a genre"
      #swagger.parameters['id'] = {
          in: 'path',
@@ -63,6 +70,8 @@ router.put('/:id',
   genresController.updateGenre);
 
 router.delete('/:id', 
+  isAuthenticated,
+  validateGenreId(),
   /* #swagger.summary = "Delete a genre"
      #swagger.parameters['id'] = {
          in: 'path',

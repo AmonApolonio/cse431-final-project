@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const actorsController = require('../controllers/actors');
+const isAuthenticated = require('../middleware/isAuthenticated');
+const { actorValidationRules, validateActorId } = require('../middleware/actorsValidation');
 
 router.post('/', 
+  isAuthenticated,
+  actorValidationRules(),
   /* #swagger.summary = "Add a new actor"
      #swagger.parameters['body'] = {
          in: 'body',
@@ -42,6 +46,9 @@ router.get('/:id',
   actorsController.getActorById);
 
 router.put('/:id', 
+  isAuthenticated,
+  validateActorId(),
+  actorValidationRules(),
   /* #swagger.summary = "Update an actor"
      #swagger.parameters['id'] = {
          in: 'path',
@@ -63,6 +70,8 @@ router.put('/:id',
   actorsController.updateActor);
 
 router.delete('/:id', 
+  isAuthenticated,
+  validateActorId(),
   /* #swagger.summary = "Delete an actor"
      #swagger.parameters['id'] = {
          in: 'path',
