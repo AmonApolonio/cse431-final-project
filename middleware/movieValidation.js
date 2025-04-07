@@ -1,7 +1,7 @@
 const { body, param, validationResult } = require('express-validator');
 
 const validateObjectId = () => {
-  return param('id').isMongoId().withMessage('Must provide a valid MongoDB ObjectId');
+  return param('id').isMongoId().withMessage('Must provide a valid ObjectId');
 };
 
 const checkValidationResult = (req, res, next) => {
