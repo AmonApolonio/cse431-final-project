@@ -5,7 +5,7 @@ const moviesController = require('../controllers/movies');
 const { movieValidationRules, validateId } = require('../middleware/movieValidation');
 const { isAuthenticated } = require('../middleware/authenticate');
 
-router.get('/', 
+router.get('/',
   /* #swagger.summary = "Get all movies"
      #swagger.responses[200] = {
          description: "List of movies",
@@ -14,7 +14,7 @@ router.get('/',
   */
   moviesController.getAll);
 
-router.get('/search', 
+router.get('/search',
   /* #swagger.summary = "Search movies by title"
      #swagger.parameters['title'] = {
          in: 'query',
@@ -29,7 +29,7 @@ router.get('/search',
   */
   moviesController.searchMovies);
 
-router.get('/filter', 
+router.get('/filter',
   /* #swagger.summary = "Filter movies by genre"
      #swagger.parameters['genre'] = {
          in: 'query',
@@ -44,8 +44,8 @@ router.get('/filter',
   */
   moviesController.filterMoviesByGenre);
 
-router.get('/:id', 
-  validateId(), 
+router.get('/:id',
+  validateId(),
   /* #swagger.summary = "Get a single movie"
      #swagger.parameters['id'] = {
          in: 'path',
@@ -60,8 +60,8 @@ router.get('/:id',
   */
   moviesController.getSingle);
 
-router.post('/', 
-  movieValidationRules(), 
+router.post('/',
+  movieValidationRules(),
   isAuthenticated,
   /* #swagger.summary = "Create a new movie"
      #swagger.parameters['body'] = {
@@ -77,9 +77,9 @@ router.post('/',
   */
   moviesController.createMovie);
 
-router.put('/:id', 
-  validateId(), 
-  movieValidationRules(), 
+router.put('/:id',
+  validateId(),
+  movieValidationRules(),
   isAuthenticated,
   /* #swagger.summary = "Update a movie"
      #swagger.parameters['id'] = {
@@ -101,7 +101,7 @@ router.put('/:id',
   */
   moviesController.updateMovie);
 
-router.delete('/:id', 
+router.delete('/:id',
   validateId(),
   isAuthenticated,
   /* #swagger.summary = "Delete a movie"

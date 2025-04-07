@@ -4,7 +4,31 @@ const actorsController = require('../controllers/actors');
 const { actorValidationRules, validateActorId } = require('../middleware/actorsValidation');
 const { isAuthenticated } = require('../middleware/authenticate');
 
-router.post('/', 
+router.get('/',
+  /* #swagger.summary = "Get all actors"
+     #swagger.responses[200] = {
+         description: "List of actors",
+         schema: { type: "array", items: { $ref: "#/definitions/Actor" } }
+     }
+  */
+  actorsController.getAllActors);
+
+router.get('/:id',
+  /* #swagger.summary = "Get a single actor"
+      #swagger.parameters['id'] = {
+          in: 'path',
+          description: "Actor ID",
+          required: true,
+          type: "string"
+      }
+      #swagger.responses[200] = {
+          description: "Actor details",
+          schema: { $ref: "#/definitions/Actor" }
+      }
+  */
+  actorsController.getActorById);
+
+router.post('/',
   isAuthenticated,
   actorValidationRules(),
   /* #swagger.summary = "Add a new actor"
@@ -21,31 +45,7 @@ router.post('/',
   */
   actorsController.addActor);
 
-router.get('/', 
-  /* #swagger.summary = "Get all actors"
-     #swagger.responses[200] = {
-         description: "List of actors",
-         schema: { type: "array", items: { $ref: "#/definitions/Actor" } }
-     }
-  */
-  actorsController.getAllActors);
-
-router.get('/:id', 
-  /* #swagger.summary = "Get a single actor"
-     #swagger.parameters['id'] = {
-         in: 'path',
-         description: "Actor ID",
-         required: true,
-         type: "string"
-     }
-     #swagger.responses[200] = {
-         description: "Actor details",
-         schema: { $ref: "#/definitions/Actor" }
-     }
-  */
-  actorsController.getActorById);
-
-router.put('/:id', 
+router.put('/:id',
   isAuthenticated,
   validateActorId(),
   actorValidationRules(),
@@ -69,7 +69,7 @@ router.put('/:id',
   */
   actorsController.updateActor);
 
-router.delete('/:id', 
+router.delete('/:id',
   isAuthenticated,
   validateActorId(),
   /* #swagger.summary = "Delete an actor"
