@@ -4,11 +4,15 @@ const ObjectId = require('mongodb').ObjectId;
 const addActor = async (req, res) => {
     //#swagger.tags = ['Actors']
     try {
+        const movies = Array.isArray(req.body.movies) 
+            ? req.body.movies.map(id => ObjectId.createFromHexString(id)) 
+            : [];
+
         const actor = {
             name: req.body.name,
             bio: req.body.bio,
             birthDate: new Date(req.body.birthDate),
-            filmography: req.body.filmography.map(id => ObjectId.createFromHexString(id))
+            movies: movies
         };
 
         const response = await mongodb.getDatabase().db().collection('actors').insertOne(actor);
@@ -57,7 +61,7 @@ const updateActor = async (req, res) => {
             name: req.body.name,
             bio: req.body.bio,
             birthDate: new Date(req.body.birthDate),
-            filmography: req.body.filmography.map(id => ObjectId.createFromHexString(id))
+            movies: req.body.movies.map(id => ObjectId.createFromHexString(id))
         };
 
         const response = await mongodb.getDatabase().db().collection('actors').updateOne({ _id: actorId }, { $set: updatedActor });
