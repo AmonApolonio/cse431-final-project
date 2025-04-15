@@ -7,6 +7,13 @@ const doc = {
   },
   host: "cse431-final-project.onrender.com",
   schemes: ['https'],
+  securityDefinitions: {
+    oauth2: {
+      type: "oauth2",
+      authorizationUrl: "https://github.com/login/oauth/authorize",
+      flow: "implicit",
+    }
+  },
   definitions: {
     Movie: {
       title: "Inception",
